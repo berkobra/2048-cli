@@ -35,23 +35,24 @@ public:
                                      // to place new numbers.
   bool isFull(); // if there are nodes that are empty (val == 0)
   void populate();
-  //void move(Direction direction);
+  //TODO bool canMove();
+  void move(Direction direction);
 private:
   std::vector<std::vector<Node> > grid2d; // wanna remove ASAP but may make
                                              // things easier in the meanwhile
 
   void justify(Direction direction);
-  //void add(Direction direction);
+  void add(Direction direction);
 
   void ljust();
   void rjust();
   void ujust();
   void djust();
 
-  //void lAdd();
-  //void rAdd();
-  //void uAdd();
-  //void dAdd();
+  void lAdd();
+  void rAdd();
+  void uAdd();
+  void dAdd();
 
   int getRandomVal() const;
 

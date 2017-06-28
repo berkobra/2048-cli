@@ -210,3 +210,50 @@ void Grid::justify(Direction direction) {
       break;
   }
 }
+
+void Grid::lAdd() {
+  for (auto & row : grid2d)
+    for (auto it = row.begin(); it != row.end() - 1; ++it)
+      (*it).addIfEqual(*(*it).right);
+}
+
+void Grid::rAdd() {
+  for (auto & row : grid2d)
+    for (auto it = row.rbegin(); it != row.rend() - 1; ++it)
+      (*it).addIfEqual(*(*it).left);
+}
+
+void Grid::uAdd() {
+  for (auto it = grid2d.begin(); it != grid2d.end() - 1; ++it)
+    for (auto & node : *it)
+      node.addIfEqual(*node.down);
+}
+
+void Grid::dAdd() {
+  for (auto it = grid2d.rbegin(); it != grid2d.rend() - 1; ++it)
+    for (auto & node : *it)
+      node.addIfEqual(*node.up);
+}
+
+void Grid::add(Direction direction) {
+  switch (direction) {
+    case Direction::left:
+      lAdd();
+      break;
+    case Direction::right:
+      rAdd();
+      break;
+    case Direction::up:
+      uAdd();
+      break;
+    case Direction::down:
+      dAdd();
+      break;
+  }
+}
+
+void Grid::move(Direction direction) {
+  justify(direction);
+  add(direction);
+  justify(direction);
+}
