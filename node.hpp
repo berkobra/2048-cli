@@ -12,6 +12,7 @@ public:
   Node(unsigned _val = 0);
   ~Node();
   bool operator==(const Node & rhs) const;
+  Node & operator=(const Node & rhs);
   //void operator =(const Node & rhs); // probably will not need
                                     // everything will be handled via
                                     // addition.

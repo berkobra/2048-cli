@@ -45,3 +45,8 @@ void Node::bindNode(Direction direction, Node * node) {
       break;
   }
 }
+
+Node & Node::operator=(const Node & rhs) {
+  val = rhs.val;
+  return *this;
+}

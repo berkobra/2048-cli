@@ -6,6 +6,8 @@
 #include <cstddef> // std::size_t
 #include <random>
 
+using std::size_t;
+
 class Grid::iterator {
 public:
   explicit iterator(pointer _node_p) : node_p(_node_p) {}
@@ -63,7 +65,7 @@ Grid::~Grid() { }
 
 void Grid::bindNodes() {
   // assume n >= 2
-  using std::size_t;
+  // using std::size_t;
   size_t gridSize = grid2d.size();
 
   // bind left-right
@@ -140,4 +142,71 @@ void Grid::populate() {
   //std::cout << "prev val: " << emptyNodes[randIndex]->val << std::endl;
   emptyNodes[randIndex]->val = getRandomVal();
   //std::cout << "end val: " << emptyNodes[randIndex]->val << std::endl;
+}
+
+void Grid::ljust() {
+  Grid & grid = *this;
+  for (auto & node : grid)
+    //for (auto & node : row)
+      if (node.left && node.left->isEmpty()) {
+        *node.left = node;
+        node.reset();
+      }
+}
+
+void Grid::rjust() {
+  Grid & grid = *this;
+  for (auto & node : grid)
+    //for (auto & node : row)
+      if (node.right && node.right->isEmpty()) {
+        *node.right = node;
+        node.reset();
+      }
+}
+
+void Grid::ujust() {
+  Grid & grid = *this;
+  for (auto & node : grid)
+    //for (auto & node : row)
+      if (node.up && node.up->isEmpty()) {
+        *node.up = node;
+        node.reset();
+      }
+}
+
+void Grid::djust() {
+  Grid & grid = *this;
+  for (auto & node : grid)
+    //for (auto & node : row)
+      if (node.down && node.down->isEmpty()) {
+        *node.down = node;
+        node.reset();
+      }
+}
+
+// TODO make multi-pass generic so that it works for game_size other than 4
+// TODO make justifying work with a single-pass algorithm
+void Grid::justify(Direction direction) {
+  switch (direction) {
+    case Direction::left:
+      ljust();
+      ljust();
+      ljust();
+      break;
+    case Direction::right:
+      rjust();
+      rjust();
+      rjust();
+      break;
+    case Direction::up:
+      ujust();
+      ujust();
+      ujust();
+      break;
+    case Direction::down:
+      djust();
+      djust();
+      djust();
+      break;
+  }
 }
