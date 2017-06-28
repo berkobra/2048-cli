@@ -25,6 +25,7 @@ public:
   void reset(); // A.val = 0;
   void addIfEqual(Node & rhs); // this or operator+, not sure
   bool isEmpty() const; // return val == 0
+  unsigned getVal() const;
 private:
   Node *right = nullptr;
   Node *left  = nullptr;
@@ -36,6 +37,7 @@ private:
                         // used when new node is instantiated
   void bindNode(Direction direction, Node * node); // direction is position of
                                                    // new node relative to *this
+  bool hasEqualNeighbor() const;
   friend class Grid;
 
   #ifdef DEBUG

@@ -35,8 +35,11 @@ public:
                                      // to place new numbers.
   bool isFull(); // if there are nodes that are empty (val == 0)
   void populate();
-  //TODO bool canMove();
+  bool canMove() const;
   void move(Direction direction);
+  std::size_t getGridSize() const;
+  const std::vector<std::vector<Node> > & get2d() const;
+
 private:
   std::vector<std::vector<Node> > grid2d; // wanna remove ASAP but may make
                                              // things easier in the meanwhile

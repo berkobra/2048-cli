@@ -44,7 +44,7 @@ void View::showGrid() {
   const int nodeWidth = 8;
   const int nodeHeight = 3; // should be an odd number
 
-  const int gridSize = grid.getGridSize();
+  const auto gridSize = grid.getGridSize();
   /*
   const int gridWidth = nodeWidth * gridSize +
                         (gridSize + 1);

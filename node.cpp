@@ -1,6 +1,6 @@
-
 #include "node.hpp"
 #include "direction.hpp"
+#include <vector>
 
 Node::Node(unsigned _val) : val(_val) { }
 
@@ -49,4 +49,16 @@ void Node::bindNode(Direction direction, Node * node) {
 Node & Node::operator=(const Node & rhs) {
   val = rhs.val;
   return *this;
+}
+
+unsigned Node::getVal() const {
+  return val;
+}
+
+bool Node::hasEqualNeighbor() const {
+  std::vector<Node*> neighbors = {up, down, left, right};
+  for (auto const & neighbor : neighbors)
+    if (*neighbor == *this)
+      return true;
+  return false;
 }

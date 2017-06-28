@@ -257,3 +257,19 @@ void Grid::move(Direction direction) {
   add(direction);
   justify(direction);
 }
+
+std::size_t Grid::getGridSize() const {
+  return grid2d.size();
+}
+
+const std::vector<std::vector<Node> > & Grid::get2d() const {
+  return grid2d;
+}
+
+bool Grid::canMove() const {
+  auto grid = *this;
+  for (auto node : grid)
+    if (node.hasEqualNeighbor())
+      return true;
+  return false;
+}
