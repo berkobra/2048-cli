@@ -1,6 +1,7 @@
 #include "node.hpp"
 #include "direction.hpp"
 #include <vector>
+#include <iostream>
 
 Node::Node(unsigned _val) : val(_val) { }
 
@@ -25,6 +26,9 @@ bool Node::operator==(const Node & rhs) const {
   return this->val == rhs.val;
 }
 
+bool Node::operator==(unsigned rhs) const {
+  return val == rhs;
+}
 void Node::bindNode(Direction direction, Node * node) {
   switch(direction) {
     case Direction::right:
@@ -58,7 +62,10 @@ unsigned Node::getVal() const {
 bool Node::hasEqualNeighbor() const {
   std::vector<Node*> neighbors = {up, down, left, right};
   for (auto const & neighbor : neighbors)
-    if (*neighbor == *this)
+    if (neighbor && *neighbor == *this) {
+      std::cout << "has neighbor" << std::endl;
       return true;
+    }
+  std::cout << "not has neighbor" << std::endl;
   return false;
 }

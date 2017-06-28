@@ -12,7 +12,7 @@ public:
   ~View();
   void show(showType type);
 private:
-  Grid grid;
+  const Grid & grid;
   void showWin();
   void showLose();
   void showGrid();

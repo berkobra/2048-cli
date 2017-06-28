@@ -5,6 +5,7 @@
 #include "view.hpp"
 #include "game.hpp"
 #include <stdexcept>
+#include <iostream>
 
 Game::Game() : grid(game_size),
                view(grid) { }
@@ -18,14 +19,22 @@ bool Game::isWon() {
   }
   return false;*/
   for (auto it = grid.begin(); it != grid.end(); ++it) {
-    if (*it == win_condition)
-      return true;
+    if (*it == win_condition) {
+      std::cout << "won" << std::endl;
+      return true; }
   }
+  std::cout << "not won" << std::endl;
   return false;
 }
 
 bool Game::isLost() {
-  return !grid.canMove();
+  bool lost = !grid.canMove();
+  if (lost)
+    std::cout << "lost" << std::endl;
+  else
+    std::cout << "not lost" << std::endl;
+  return lost;
+  //return !grid.canMove();
 }
 
 void Game::run() {

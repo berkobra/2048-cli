@@ -27,6 +27,7 @@ Grid::Grid(unsigned n)
     }
     grid2d[i] = row;
   }
+  bindNodes();
 }
 
 Grid::~Grid() { }

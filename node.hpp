@@ -15,6 +15,7 @@ public:
   explicit Node(unsigned _val = 0);
   ~Node();
   bool operator==(const Node & rhs) const;
+  bool operator==(unsigned rhs) const;
   Node & operator=(const Node & rhs);
   //void operator =(const Node & rhs); // probably will not need
                                     // everything will be handled via
@@ -46,13 +47,5 @@ private:
   friend class GridTester;
   #endif /* DEBUG */
 };
-
-bool operator== (const Node & lhs, const unsigned rhs) {
-  return lhs.getVal() == rhs;
-}
-
-bool operator== (const unsigned lhs, const Node & rhs) {
-  return rhs == lhs;
-}
 
 #endif /* NODE_H */
