@@ -62,10 +62,9 @@ unsigned Node::getVal() const {
 bool Node::hasEqualNeighbor() const {
   std::vector<Node*> neighbors = {up, down, left, right};
   for (auto const & neighbor : neighbors)
-    if (neighbor && *neighbor == *this) {
-      std::cout << "has neighbor" << std::endl;
+    if (neighbor && *neighbor == *this)
+      //std::cout << "has neighbor" << std::endl;
       return true;
-    }
-  std::cout << "not has neighbor" << std::endl;
+  //std::cout << "not has neighbor" << std::endl;
   return false;
 }

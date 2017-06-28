@@ -104,6 +104,8 @@ void Grid::populate() {
   static std::random_device rd;
   static std::mt19937 rng(rd());
   std::vector<Node *> emptyNodes = getEmptyNodes();
+  if (emptyNodes.empty())
+    return;
   std::uniform_int_distribution<int> dist(0, emptyNodes.size()-1);
   int randIndex = dist(rng);
   //int randIndex = 6;
@@ -238,7 +240,7 @@ const std::vector<std::vector<Node> > & Grid::get2d() const {
 bool Grid::canMove() const {
   auto grid = *this;
   for (auto node : grid)
-    if (node.hasEqualNeighbor())
+    if (node.hasEqualNeighbor() || node.isEmpty())
       return true;
   return false;
 }

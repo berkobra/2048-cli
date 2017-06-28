@@ -19,22 +19,22 @@ bool Game::isWon() {
   }
   return false;*/
   for (auto it = grid.begin(); it != grid.end(); ++it) {
-    if (*it == win_condition) {
-      std::cout << "won" << std::endl;
-      return true; }
+    if (*it == win_condition)
+      //std::cout << "won" << std::endl;
+      return true;
   }
-  std::cout << "not won" << std::endl;
+  //std::cout << "not won" << std::endl;
   return false;
 }
 
 bool Game::isLost() {
-  bool lost = !grid.canMove();
-  if (lost)
-    std::cout << "lost" << std::endl;
-  else
-    std::cout << "not lost" << std::endl;
-  return lost;
-  //return !grid.canMove();
+  //bool lost = !grid.canMove();
+  //if (lost)
+    //std::cout << "lost" << std::endl;
+  //else
+    //std::cout << "not lost" << std::endl;
+  //return lost;
+  return !grid.canMove();
 }
 
 void Game::run() {
@@ -43,15 +43,22 @@ void Game::run() {
     // generate one random value
     grid.populate();
     view.show(view.showType::grid);
-    try {
-      currentDirection = controller.getDirection();
-    }
-    catch(const std::invalid_argument & e) {
-      view.show(view.showType::invalid_argument);
-      currentDirection = controller.getDirection();
+    bool gotDirection = false;
+    while(!gotDirection) {
+      try {
+        currentDirection = controller.getDirection();
+        gotDirection = true;
+      }
+      catch(const std::invalid_argument & e) {
+        view.show(view.showType::invalid_argument);
+        //currentDirection = controller.getDirection();
+      }
     }
     grid.move(currentDirection);
   }
+
+  // show for the last time before win or lose
+  view.show(view.showType::grid);
 
   if (isWon()) {
     view.show(view.showType::win);
