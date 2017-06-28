@@ -12,7 +12,7 @@ class GridTester;
 
 class Node {
 public:
-  Node(unsigned _val = 0);
+  explicit Node(unsigned _val = 0);
   ~Node();
   bool operator==(const Node & rhs) const;
   Node & operator=(const Node & rhs);
@@ -39,11 +39,20 @@ private:
                                                    // new node relative to *this
   bool hasEqualNeighbor() const;
   friend class Grid;
+  friend class GridIterator;
 
   #ifdef DEBUG
   friend class NodeTester;
   friend class GridTester;
   #endif /* DEBUG */
 };
+
+bool operator== (const Node & lhs, const unsigned rhs) {
+  return lhs.getVal() == rhs;
+}
+
+bool operator== (const unsigned lhs, const Node & rhs) {
+  return rhs == lhs;
+}
 
 #endif /* NODE_H */

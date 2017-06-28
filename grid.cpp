@@ -1,5 +1,6 @@
 #include <iostream>
 #include "grid.hpp"
+#include "grid_iterator.hpp"
 #include "node.hpp"
 #include "direction.hpp"
 #include <vector>
@@ -8,44 +9,11 @@
 
 using std::size_t;
 
-class Grid::iterator {
-public:
-  explicit iterator(pointer _node_p) : node_p(_node_p) {}
-  // why not const refs?
-  bool operator==(iterator other) const {return node_p == other.node_p;}
-  bool operator!=(iterator other) const {return !(*this == other);}
-  reference operator*() const {return *node_p;}
-  iterator & operator++() {
-    if (node_p -> right == nullptr) {
-      if (node_p == nullptr)  return *this;
-
-      Node *tmp = node_p;
-      while (tmp -> left != nullptr) {
-        tmp = tmp -> left;
-      }
-      tmp = tmp -> down;
-      node_p = tmp;
-    }
-    else {
-      node_p = node_p -> right;
-    }
-    return *this;
-  }
-  iterator operator++(int) {
-    iterator retval = *this;
-    ++(*this);
-    return retval;
-  }
-
-private:
-  pointer node_p;
-};
-
 Grid::iterator Grid::begin() {
   return iterator(&grid2d[0][0]);
 }
 
-Grid::iterator Grid::end() {
+Grid::iterator Grid::end() const {
   return iterator(nullptr);
 }
 

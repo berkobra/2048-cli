@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include "node.hpp"
+#include "grid_iterator.hpp"
 #include <vector>
 #include <cstddef> // std::size_t, std::ptrdiff_t
 
@@ -11,8 +12,10 @@ class GridTester;
 
 class Grid {
 public:
-  class iterator;
-  //typedef Grid::iterator iterator;
+  //class GridIterator;
+  friend class GridIterator;
+
+  typedef GridIterator iterator;
   typedef std::ptrdiff_t difference_type;
   typedef std::size_t size_type;
   typedef Node value_type;
@@ -20,7 +23,7 @@ public:
   typedef Node & reference;
 
   iterator begin();
-  iterator end();
+  iterator end() const;
 
   Grid(unsigned n);
   ~Grid();
