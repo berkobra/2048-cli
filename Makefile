@@ -12,6 +12,6 @@ clean:
 
 # Tests
 grid_test: grid_test.cpp grid.cpp node.cpp
-	$(CC) $(CFLAGS) grid_test.cpp grid.cpp node.cpp -o grid_test
+	$(CC) $(CFLAGS) -DDEBUG grid_test.cpp grid.cpp node.cpp -o grid_test
 
 .PHONY: clean

@@ -4,8 +4,11 @@
 #include "direction.hpp"
 
 class Grid;
+
+#ifdef DEBUG
 class NodeTester;
 class GridTester;
+#endif /* DEBUG */
 
 class Node {
 public:
@@ -34,8 +37,11 @@ private:
   void bindNode(Direction direction, Node * node); // direction is position of
                                                    // new node relative to *this
   friend class Grid;
+
+  #ifdef DEBUG
   friend class NodeTester;
   friend class GridTester;
+  #endif /* DEBUG */
 };
 
 #endif /* NODE_H */

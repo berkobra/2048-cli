@@ -5,7 +5,9 @@
 #include <vector>
 #include <cstddef> // std::size_t, std::ptrdiff_t
 
+#ifdef DEBUG
 class GridTester;
+#endif /* DEBUG */
 
 class Grid {
 public:
@@ -53,7 +55,9 @@ private:
 
   int getRandomVal() const;
 
+  #ifdef DEBUG
   friend class GridTester;
+  #endif /* DEBUG */
 };
 
 #endif /* GRID_H */
