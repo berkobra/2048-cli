@@ -2,9 +2,9 @@
 #include "node.hpp"
 #include "direction.hpp"
 
-Node::Node(unsigned _val) : val(_val) { };
+Node::Node(unsigned _val) : val(_val) { }
 
-Node::~Node() { };
+Node::~Node() { }
 
 void Node::reset() {
   val = 0;

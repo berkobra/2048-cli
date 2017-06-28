@@ -50,9 +50,9 @@ Grid::iterator Grid::end() {
 Grid::Grid(unsigned n)
   : grid2d(std::vector<std::vector<Node> >(n))
 {
-  for (int i = 0; i < n; ++i) {
+  for (unsigned i = 0; i < n; ++i) {
     std::vector<Node> row(n);
-    for (int j = 0; j < n; ++j) {
+    for (unsigned j = 0; j < n; ++j) {
       row[j] = Node();
     }
     grid2d[i] = row;
