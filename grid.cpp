@@ -155,29 +155,25 @@ void Grid::djust() {
       }
 }
 
-// TODO make multi-pass generic so that it works for game_size other than 4
 // TODO make justifying work with a single-pass algorithm
 void Grid::justify(Direction direction) {
+  extern const unsigned game_size;
   switch (direction) {
     case Direction::left:
-      ljust();
-      ljust();
-      ljust();
+      for (int i = 0; i < game_size - 1; ++i)
+	ljust();
       break;
     case Direction::right:
-      rjust();
-      rjust();
-      rjust();
+      for (int i = 0; i < game_size - 1; ++i)
+        rjust();
       break;
     case Direction::up:
-      ujust();
-      ujust();
-      ujust();
+      for (int i = 0; i < game_size - 1; ++i)
+        ujust();
       break;
     case Direction::down:
-      djust();
-      djust();
-      djust();
+      for (int i = 0; i < game_size - 1; ++i)
+        djust();
       break;
   }
 }
