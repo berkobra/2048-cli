@@ -39,6 +39,7 @@ bool Game::isLost() {
 
 void Game::run() {
   Direction currentDirection;
+  grid.populate();
   while (!isWon() && !isLost()) {
     // generate one random value
     grid.populate();
