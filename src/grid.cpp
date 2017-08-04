@@ -160,19 +160,19 @@ void Grid::justify(Direction direction) {
   extern const unsigned game_size;
   switch (direction) {
     case Direction::left:
-      for (int i = 0; i < game_size - 1; ++i)
+      for (unsigned i = 0; i < game_size - 1; ++i)
 	ljust();
       break;
     case Direction::right:
-      for (int i = 0; i < game_size - 1; ++i)
+      for (unsigned i = 0; i < game_size - 1; ++i)
         rjust();
       break;
     case Direction::up:
-      for (int i = 0; i < game_size - 1; ++i)
+      for (unsigned i = 0; i < game_size - 1; ++i)
         ujust();
       break;
     case Direction::down:
-      for (int i = 0; i < game_size - 1; ++i)
+      for (unsigned i = 0; i < game_size - 1; ++i)
         djust();
       break;
   }

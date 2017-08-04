@@ -1,17 +1,25 @@
 CC := g++
+
+SRCDIR := src
 BUILDDIR := build
+TARGET := bin/2048-cli
+ 
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name "*.$(SRCEXT)")
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g -Wall -pedantic -pedantic-errors
+INC := -I include
 
-CFLAGS := -Wall -pedantic -pedantic-errors -g
+$(TARGET): $(OBJECTS)
+	@echo " Linking..."
+	@echo " $(CC) $^ -o $(TARGET)"; $(CC) $^ -o $(TARGET)
 
-2048-cli: controller.cpp game.cpp main.cpp grid.cpp node.cpp view.cpp grid_iterator.cpp
-	$(CC) $(CFLAGS) controller.cpp game.cpp main.cpp grid.cpp grid_iterator.cpp node.cpp view.cpp -o 2048-cli
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
+	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
-	@echo " Cleaning...";
-	rm grid_test 2048-cli
-
-# Tests
-grid_test: grid_test.cpp grid.cpp node.cpp grid_iterator.cpp
-	$(CC) $(CFLAGS) -DDEBUG grid_test.cpp grid.cpp grid_iterator.cpp node.cpp -o grid_test
+	@echo " Cleaning..."; 
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
 
 .PHONY: clean

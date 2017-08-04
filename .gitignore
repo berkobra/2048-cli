@@ -1,5 +1,5 @@
-# test stuff
-*_test*
+# Ignore build dir
+build
 
-# executable
-2048-cli
+# Ignore executables
+bin/*
